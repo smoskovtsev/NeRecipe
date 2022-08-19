@@ -6,5 +6,5 @@ data class Recipe(
     val author: String,
     val category: String,
     val description: String,
-    val favorite: Boolean = false
+    var favorite: Boolean = false
 )

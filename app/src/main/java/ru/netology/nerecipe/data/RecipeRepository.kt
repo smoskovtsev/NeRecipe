@@ -5,6 +5,8 @@ import ru.netology.nerecipe.dto.Recipe
 
 interface RecipeRepository {
 
-    val data: LiveData<Recipe>
+    val data: LiveData<List<Recipe>>
+
+    fun addToFavorite(recipeId: Long)
 
 }

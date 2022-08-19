@@ -2,24 +2,23 @@ package ru.netology.nerecipe
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import ru.netology.nerecipe.databinding.ActivityMainBinding
 import ru.netology.nerecipe.dto.Recipe
+import ru.netology.nerecipe.viewModel.RecipeViewModel
 
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel by viewModels<RecipeViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val recipe = Recipe(
-            id = 1L,
-            name = "Паэлья по андалусийски",
-            author = "Хави Алонсо",
-            category = "Европейская",
-            description = "Вот как готовить это блюдо"
-        )
-
-        binding.render(recipe)
+        viewModel.data.observe(this) { recipe ->
+            binding.render(recipe)
+        }
     }
 
     private fun ActivityMainBinding.render(recipe: Recipe) {

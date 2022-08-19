@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NeRecipe</string>
+    <string name="description_recipe_menu">Опции</string>
+    <string name="description_favorite">Избранное</string>
+</resources>

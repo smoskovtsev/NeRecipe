@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NeRecipe</string>
+    <string name="description_recipe_menu">Recipe menu</string>
+    <string name="description_favorite">Favourites</string>
 </resources>

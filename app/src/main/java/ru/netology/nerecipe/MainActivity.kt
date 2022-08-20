@@ -1,6 +1,7 @@
 package ru.netology.nerecipe
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nerecipe.adapter.RecipesAdapter
@@ -25,9 +26,18 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(recipes)
         }
 
+        binding.descriptionEdit.setOnFocusChangeListener { _, _ ->
+            if (binding.descriptionEdit.hasFocus()) binding.cancelButton.visibility = View.VISIBLE
+            else binding.cancelButton.visibility = View.GONE
+        }
+
         binding.saveButton.setOnClickListener {
             val description = binding.descriptionEdit.text.toString()
             viewModel.onSaveButtonClicked(description)
+        }
+
+        binding.cancelButton.setOnClickListener {
+            viewModel.onCancelButtonClicked()
         }
 
         viewModel.currentRecipe.observe(this) { currentRecipe ->

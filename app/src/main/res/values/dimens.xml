@@ -2,4 +2,6 @@
 <resources>
     <dimen name="common_spacing">16dp</dimen>
     <dimen name="extended_spacing">32dp</dimen>
+    <dimen name="reduced_spacing">12dp</dimen>
+    <dimen name="icon_button_min_size">24dp</dimen>
 </resources>

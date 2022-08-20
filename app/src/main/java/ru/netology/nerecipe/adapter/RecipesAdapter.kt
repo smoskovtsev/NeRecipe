@@ -50,6 +50,7 @@ internal class RecipesAdapter(
 
         init {
             binding.favorite.setOnClickListener { listener.onFavAdded(recipe) }
+            binding.menu.setOnClickListener{popupMenu.show()}
         }
 
         fun bind(recipe: Recipe) {
@@ -61,14 +62,9 @@ internal class RecipesAdapter(
                 recipeCategory.text = recipe.category
                 recipeDescription.text = recipe.description
 
-                favorite.setImageResource(getFavIconResId(recipe.favorite))
-                menu.setOnClickListener{popupMenu.show()}
+                favorite.isChecked = recipe.favorite
             }
         }
-
-        @DrawableRes
-        private fun getFavIconResId(liked: Boolean) =
-            if (liked) R.drawable.ic_favorite_added_24 else R.drawable.ic_favorite_border_24
     }
 
     private object DiffCallback : DiffUtil.ItemCallback<Recipe>() {

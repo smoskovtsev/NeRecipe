@@ -31,6 +31,14 @@ class RecipeViewModel : ViewModel(), RecipeInteractionListener {
         currentRecipe.value = null
     }
 
+    fun onCancelButtonClicked() {
+        val recipe = currentRecipe.value?.copy()
+        if (recipe != null) {
+            repository.addUpdateRecipe(recipe)
+        }
+        currentRecipe.value = null
+    }
+
     // region PostInteractionListener
 
     override fun onFavAdded(recipe: Recipe) = repository.addToFavorite(recipe.id)

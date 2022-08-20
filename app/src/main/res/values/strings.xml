@@ -2,4 +2,7 @@
     <string name="app_name">NeRecipe</string>
     <string name="description_recipe_menu">Recipe menu</string>
     <string name="description_favorite">Favourites</string>
+    <string name="recipe_description">Description</string>
+    <string name="menu_edit">Edit</string>
+    <string name="menu_remove">Remove</string>
 </resources>

@@ -1,7 +1,8 @@
-package ru.netology.nerecipe.data.impl
+package ru.netology.nerecipe.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -11,25 +12,44 @@ import ru.netology.nerecipe.databinding.RecipeBinding
 import ru.netology.nerecipe.dto.Recipe
 
 internal class RecipesAdapter(
-    private val onFavAdded: (Recipe) -> Unit
+    private val interactionListener: RecipeInteractionListener
 ) : ListAdapter<Recipe, RecipesAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = RecipeBinding.inflate(inflater, parent, false)
-        return ViewHolder(binding, onFavAdded)
+        return ViewHolder(binding, interactionListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
-    class ViewHolder(private val binding: RecipeBinding, onFavAdded: (Recipe) -> Unit) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: RecipeBinding, listener: RecipeInteractionListener) : RecyclerView.ViewHolder(binding.root) {
 
         private lateinit var recipe: Recipe
 
+        private val popupMenu by lazy {
+            PopupMenu(itemView.context, binding.menu).apply {
+                inflate(R.menu.options_recipe)
+                setOnMenuItemClickListener { menuItem ->
+                    when (menuItem.itemId) {
+                        R.id.remove -> {
+                            listener.onRecipeDeleted(recipe)
+                            true
+                        }
+                        R.id.edit -> {
+                            listener.onRecipeEdited(recipe)
+                            true
+                        }
+                        else -> false
+                    }
+                }
+            }
+        }
+
         init {
-            binding.favorite.setOnClickListener { onFavAdded(recipe) }
+            binding.favorite.setOnClickListener { listener.onFavAdded(recipe) }
         }
 
         fun bind(recipe: Recipe) {
@@ -42,6 +62,7 @@ internal class RecipesAdapter(
                 recipeDescription.text = recipe.description
 
                 favorite.setImageResource(getFavIconResId(recipe.favorite))
+                menu.setOnClickListener{popupMenu.show()}
             }
         }
 

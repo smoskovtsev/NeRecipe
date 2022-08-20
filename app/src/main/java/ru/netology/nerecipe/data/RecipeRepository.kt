@@ -9,4 +9,12 @@ interface RecipeRepository {
 
     fun addToFavorite(recipeId: Long)
 
+    fun deleteRecipe(recipeId: Long)
+
+    fun addUpdateRecipe(recipe: Recipe)
+
+    companion object {
+        const val NEW_RECIPE_ID = 0L
+    }
+
 }

@@ -6,4 +6,5 @@ interface RecipeInteractionListener {
     fun onFavAdded(recipe: Recipe)
     fun onRecipeDeleted(recipe: Recipe)
     fun onRecipeEdited(recipe: Recipe)
+    fun onRecipeClicked(recipe: Recipe)
 }

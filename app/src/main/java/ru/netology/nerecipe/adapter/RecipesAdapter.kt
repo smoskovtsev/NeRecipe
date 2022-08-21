@@ -3,7 +3,6 @@ package ru.netology.nerecipe.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -51,6 +50,7 @@ internal class RecipesAdapter(
         init {
             binding.favorite.setOnClickListener { listener.onFavAdded(recipe) }
             binding.menu.setOnClickListener{popupMenu.show()}
+            binding.recipeDescription.setOnClickListener { listener.onRecipeClicked(recipe) }
         }
 
         fun bind(recipe: Recipe) {

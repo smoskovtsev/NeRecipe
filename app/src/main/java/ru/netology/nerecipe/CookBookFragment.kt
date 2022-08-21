@@ -1,36 +1,33 @@
 package ru.netology.nerecipe
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nerecipe.adapter.RecipesAdapter
 import ru.netology.nerecipe.databinding.CookBookFragmentBinding
-import ru.netology.nerecipe.ui.RecipeFragment
+import ru.netology.nerecipe.ui.RecipeDescriptionFragment
 import ru.netology.nerecipe.viewModel.RecipeViewModel
 
 class CookBookFragment : Fragment() {
 
-    private val viewModel by viewModels<RecipeViewModel>()
+    private val viewModel: RecipeViewModel by viewModels(
+        ownerProducer = ::requireParentFragment
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setFragmentResultListener(
-            requestKey = RecipeFragment.REQUEST_KEY
-        ) { requestKey, bundle ->
-            if (requestKey != RecipeFragment.REQUEST_KEY) return@setFragmentResultListener
-            val newRecipe = bundle.getString(RecipeFragment.RESULT_KEY) ?: return@setFragmentResultListener
-            viewModel.onSaveButtonClicked(newRecipe)
+        viewModel.navigateToRecipeDescriptionScreenEvent.observe(this) { initialRecipe ->
+            val direction = CookBookFragmentDirections.toRecipeDescriptionFragment(initialRecipe)
+            findNavController().navigate(direction)
         }
 
-        viewModel.navigateToRecipeScreenEvent.observe(this) { initialRecipe ->
-            val direction = CookBookFragmentDirections.toRecipeFragment(initialRecipe)
+        viewModel.navigateToRecipeCardScreenEvent.observe(this) { initialRecipe ->
+            val direction = CookBookFragmentDirections.toRecipeCardFragment(initialRecipe)
             findNavController().navigate(direction)
         }
     }
@@ -51,6 +48,17 @@ class CookBookFragment : Fragment() {
             viewModel.onAddClicked()
         }
     }.root
+
+    override fun onResume () {
+        super.onResume()
+
+        setFragmentResultListener(RecipeDescriptionFragment.REQUEST_KEY
+        ) { requestKey, bundle ->
+            if (requestKey != RecipeDescriptionFragment.REQUEST_KEY) return@setFragmentResultListener
+            val newRecipeDescription = bundle.getString(RecipeDescriptionFragment.RESULT_KEY) ?: return@setFragmentResultListener
+            viewModel.onSaveButtonClicked(newRecipeDescription)
+        }
+    }
 
     companion object {
         const val TAG = "cookBookFragment"

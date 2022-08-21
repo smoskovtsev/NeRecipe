@@ -8,15 +8,15 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import ru.netology.nerecipe.databinding.RecipeFragmentBinding
+import ru.netology.nerecipe.databinding.RecipeDescriptionFragmentBinding
 import ru.netology.nerecipe.viewModel.RecipeViewModel
 
-class RecipeFragment : Fragment() {
+class RecipeDescriptionFragment : Fragment() {
 
     private val viewModel by viewModels<RecipeViewModel>()
 
     private val initialRecipe by lazy {
-        val args by navArgs<RecipeFragmentArgs>()
+        val args by navArgs<RecipeDescriptionFragmentArgs>()
         args.initialRecipe
     }
 
@@ -24,7 +24,7 @@ class RecipeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = RecipeFragmentBinding.inflate(layoutInflater, container, false).also { binding ->
+    ) = RecipeDescriptionFragmentBinding.inflate(layoutInflater, container, false).also { binding ->
         binding.edit.setText(initialRecipe)
         binding.edit.requestFocus()
 
@@ -37,7 +37,7 @@ class RecipeFragment : Fragment() {
         }
     }.root
 
-    private fun onOkButtonClicked(binding: RecipeFragmentBinding) {
+    private fun onOkButtonClicked(binding: RecipeDescriptionFragmentBinding) {
         val text = binding.edit.text
         if (!text.isNullOrBlank()) {
             val resultBundle = Bundle(1)
@@ -49,6 +49,6 @@ class RecipeFragment : Fragment() {
 
     companion object {
         const val REQUEST_KEY = "requestKey"
-        const val RESULT_KEY = "recipeNewDescription"
+        const val RESULT_KEY = "resultKey"
     }
 }

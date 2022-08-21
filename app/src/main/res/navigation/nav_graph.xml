@@ -10,18 +10,34 @@
         android:name="ru.netology.nerecipe.CookBookFragment"
         tools:layout="@layout/cook_book_fragment" >
         <action
-            android:id="@+id/to_recipeFragment"
-            app:destination="@id/recipeFragment" />
+            android:id="@+id/to_recipeDescriptionFragment"
+            app:destination="@id/recipeDescriptionFragment" />
+        <action
+            android:id="@+id/to_recipeCardFragment"
+            app:destination="@+id/recipeCardFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/recipeFragment"
-        android:name="ru.netology.nerecipe.ui.RecipeFragment"
-        tools:layout="@layout/recipe_fragment" >
+        android:id="@+id/recipeDescriptionFragment"
+        android:name="ru.netology.nerecipe.ui.RecipeDescriptionFragment"
+        tools:layout="@layout/recipe_description_fragment" >
 
         <argument
             android:name="initialRecipe"
             app:argType="string"
             app:nullable="true" />
     </fragment>
+
+    <fragment
+        android:id="@+id/recipeCardFragment"
+        android:name="ru.netology.nerecipe.ui.RecipeCardFragment"
+        tools:layout="@layout/recipe_card_fragment" >
+        <argument
+            android:name="initialRecipe"
+            app:argType="ru.netology.nerecipe.dto.Recipe"
+            app:nullable="true" />
+        <action
+            android:id="@+id/to_recipeDescriptionFragment"
+            app:destination="@id/recipeDescriptionFragment" />
+    </fragment><action android:id="@+id/action_global_feedFragment" app:destination="@id/cookBookFragment"/>
 </navigation>

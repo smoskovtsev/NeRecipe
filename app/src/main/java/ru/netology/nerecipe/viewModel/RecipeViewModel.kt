@@ -1,18 +1,26 @@
 package ru.netology.nerecipe.viewModel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.netology.nerecipe.adapter.RecipeInteractionListener
 import ru.netology.nerecipe.data.RecipeRepository
+import ru.netology.nerecipe.data.impl.FileRecipeRepository
+import ru.netology.nerecipe.data.impl.SharedPrefsRecipeRepository
 import ru.netology.nerecipe.data.impl.InMemoryRecipeRepository
 import ru.netology.nerecipe.dto.Recipe
+import ru.netology.nerecipe.util.SingleLiveEvent
 
-class RecipeViewModel : ViewModel(), RecipeInteractionListener {
+class RecipeViewModel(
+    application: Application
+) : AndroidViewModel(application), RecipeInteractionListener {
 
-    private val repository: RecipeRepository = InMemoryRecipeRepository()
+    private val repository: RecipeRepository = FileRecipeRepository(application)
 
     val data get() = repository.data
 
+    val navigateToRecipeScreenEvent = SingleLiveEvent<String>()
     val currentRecipe = MutableLiveData<Recipe?>(null)
 
     fun onSaveButtonClicked(description: String) {
@@ -31,12 +39,8 @@ class RecipeViewModel : ViewModel(), RecipeInteractionListener {
         currentRecipe.value = null
     }
 
-    fun onCancelButtonClicked() {
-        val recipe = currentRecipe.value?.copy()
-        if (recipe != null) {
-            repository.addUpdateRecipe(recipe)
-        }
-        currentRecipe.value = null
+    fun onAddClicked() {
+        navigateToRecipeScreenEvent.call()
     }
 
     // region PostInteractionListener
@@ -47,6 +51,7 @@ class RecipeViewModel : ViewModel(), RecipeInteractionListener {
 
     override fun onRecipeEdited(recipe: Recipe) {
         currentRecipe.value = recipe
+        navigateToRecipeScreenEvent.value = recipe.description
     }
 
     // endregion PostInteractionListener

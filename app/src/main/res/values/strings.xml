@@ -6,4 +6,7 @@
     <string name="menu_edit">Edit</string>
     <string name="menu_remove">Remove</string>
     <string name="cancel_button">Cancel</string>
+    <string name="add_recipe">Add recipe</string>
+    <string name="description_recipe_save">Save recipe</string>
+    <string name="ok">Ok</string>
 </resources>

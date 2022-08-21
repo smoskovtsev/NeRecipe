@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/cookBookFragment">
+
+    <fragment
+        android:id="@+id/cookBookFragment"
+        android:name="ru.netology.nerecipe.CookBookFragment"
+        tools:layout="@layout/cook_book_fragment" >
+        <action
+            android:id="@+id/to_recipeFragment"
+            app:destination="@id/recipeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recipeFragment"
+        android:name="ru.netology.nerecipe.ui.RecipeFragment"
+        tools:layout="@layout/recipe_fragment" >
+
+        <argument
+            android:name="initialRecipe"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+</navigation>

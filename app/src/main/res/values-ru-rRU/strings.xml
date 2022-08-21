@@ -7,4 +7,7 @@
     <string name="menu_edit">Редактировать</string>
     <string name="menu_remove">Удалить</string>
     <string name="cancel_button">Отменить</string>
+    <string name="add_recipe">Добавить рецепт</string>
+    <string name="description_recipe_save">Сохранить рецепт</string>
+    <string name="ok">Ok</string>
 </resources>

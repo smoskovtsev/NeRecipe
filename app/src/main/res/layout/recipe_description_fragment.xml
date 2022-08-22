@@ -25,21 +25,21 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/ok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:contentDescription="@string/description_recipe_save"
         app:srcCompat="@drawable/ic_ok_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_anchor="@id/bottomAppBar"
         app:layout_anchorGravity="center"
         />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/cancelButton"
+        android:contentDescription="@string/cancel_button"
+        app:srcCompat="@drawable/ic_cancel_24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/fab_margin"
-        android:contentDescription="@string/cancel_button"
-        app:srcCompat="@drawable/ic_cancel_24"
         app:layout_anchor="@id/bottomAppBar"
         app:layout_anchorGravity="end"
         app:backgroundTint="@android:color/holo_red_light"

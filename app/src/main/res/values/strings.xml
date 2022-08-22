@@ -8,5 +8,7 @@
     <string name="cancel_button">Cancel</string>
     <string name="add_recipe">Add recipe</string>
     <string name="description_recipe_save">Save recipe</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
+    <string name="no_recipe_text">You have no recipes yet</string>
+    <string name="no_recipe_image">No recipe image</string>
 </resources>

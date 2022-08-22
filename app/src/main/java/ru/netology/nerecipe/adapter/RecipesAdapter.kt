@@ -50,7 +50,7 @@ internal class RecipesAdapter(
         init {
             binding.favorite.setOnClickListener { listener.onFavAdded(recipe) }
             binding.menu.setOnClickListener{popupMenu.show()}
-            binding.recipeDescription.setOnClickListener { listener.onRecipeClicked(recipe) }
+            binding.recipeName.setOnClickListener { listener.onRecipeClicked(recipe) }
         }
 
         fun bind(recipe: Recipe) {
@@ -61,7 +61,6 @@ internal class RecipesAdapter(
                 recipeAuthor.text = recipe.author
                 recipeCategory.text = recipe.category
                 recipeDescription.text = recipe.description
-
                 favorite.isChecked = recipe.favorite
             }
         }

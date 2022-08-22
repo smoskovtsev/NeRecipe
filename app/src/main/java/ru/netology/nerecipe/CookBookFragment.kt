@@ -1,13 +1,16 @@
 package ru.netology.nerecipe
 
 import android.os.Bundle
+import android.text.TextUtils.isEmpty
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nerecipe.adapter.RecipesAdapter
+import ru.netology.nerecipe.data.impl.InMemoryRecipeRepository
 import ru.netology.nerecipe.databinding.CookBookFragmentBinding
 import ru.netology.nerecipe.ui.RecipeDescriptionFragment
 import ru.netology.nerecipe.viewModel.RecipeViewModel
@@ -42,6 +45,10 @@ class CookBookFragment : Fragment() {
         binding.recipesRecyclerView.adapter = adapter
         viewModel.data.observe(viewLifecycleOwner) { recipes ->
             adapter.submitList(recipes)
+            if (viewModel.data.value.isNullOrEmpty()) {
+                binding.imageEmpty.visibility = View.VISIBLE
+                binding.textEmpty.visibility = View.VISIBLE
+            }
         }
 
         binding.fab.setOnClickListener {

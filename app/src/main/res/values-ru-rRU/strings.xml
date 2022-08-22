@@ -10,4 +10,6 @@
     <string name="add_recipe">Добавить рецепт</string>
     <string name="description_recipe_save">Сохранить рецепт</string>
     <string name="ok">Ok</string>
+    <string name="no_recipe_image">Нет рецептов</string>
+    <string name="no_recipe_text">У вас еще нет ни одного рецепта</string>
 </resources>

@@ -25,9 +25,11 @@ class RecipeDescriptionFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ) = RecipeDescriptionFragmentBinding.inflate(layoutInflater, container, false).also { binding ->
-        binding.edit.setText(initialRecipe)
-        binding.edit.requestFocus()
-
+        binding.editName.setText(initialRecipe?.name)
+        binding.editAuthor.setText(initialRecipe?.author)
+        binding.editCategory.setText(initialRecipe?.category)
+        binding.editDescription.setText(initialRecipe?.description)
+        binding.editDescription.requestFocus()
         binding.ok.setOnClickListener {
             onOkButtonClicked(binding)
         }
@@ -38,10 +40,13 @@ class RecipeDescriptionFragment : Fragment() {
     }.root
 
     private fun onOkButtonClicked(binding: RecipeDescriptionFragmentBinding) {
-        val text = binding.edit.text
-        if (!text.isNullOrBlank()) {
+        val textName = binding.editName.text
+        val textAuthor = binding.editAuthor.text
+        val textCategory = binding.editCategory.text
+        val textDescription = binding.editDescription.text
+        if (!textName.isNullOrBlank() && !textDescription.isNullOrBlank() ) {
             val resultBundle = Bundle(1)
-            resultBundle.putString(RESULT_KEY, text.toString())
+            resultBundle.putStringArray(RESULT_KEY, arrayOf(textName.toString(), textAuthor.toString(), textCategory.toString(), textDescription.toString()))
             setFragmentResult(REQUEST_KEY, resultBundle)
         }
         findNavController().popBackStack()

@@ -1,7 +1,6 @@
 package ru.netology.nerecipe
 
 import android.os.Bundle
-import android.text.TextUtils.isEmpty
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nerecipe.adapter.RecipesAdapter
-import ru.netology.nerecipe.data.impl.InMemoryRecipeRepository
 import ru.netology.nerecipe.databinding.CookBookFragmentBinding
 import ru.netology.nerecipe.ui.RecipeDescriptionFragment
 import ru.netology.nerecipe.viewModel.RecipeViewModel
@@ -62,8 +60,8 @@ class CookBookFragment : Fragment() {
         setFragmentResultListener(RecipeDescriptionFragment.REQUEST_KEY
         ) { requestKey, bundle ->
             if (requestKey != RecipeDescriptionFragment.REQUEST_KEY) return@setFragmentResultListener
-            val newRecipeDescription = bundle.getString(RecipeDescriptionFragment.RESULT_KEY) ?: return@setFragmentResultListener
-            viewModel.onSaveButtonClicked(newRecipeDescription)
+            val newRecipe = bundle.getStringArray(RecipeDescriptionFragment.RESULT_KEY) ?: return@setFragmentResultListener
+            viewModel.onSaveButtonClicked(newRecipe)
         }
     }
 

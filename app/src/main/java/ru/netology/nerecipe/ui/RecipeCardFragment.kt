@@ -8,6 +8,7 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.navGraphViewModels
 import ru.netology.nerecipe.CookBookFragmentDirections
 import ru.netology.nerecipe.adapter.RecipesAdapter
 import ru.netology.nerecipe.databinding.RecipeCardFragmentBinding
@@ -51,7 +52,7 @@ class RecipeCardFragment : Fragment() {
         setFragmentResultListener(RecipeDescriptionFragment.REQUEST_KEY
         ) { requestKey, bundle ->
             if (requestKey != RecipeDescriptionFragment.REQUEST_KEY) return@setFragmentResultListener
-            val newRecipeContent = bundle.getString(RecipeDescriptionFragment.RESULT_KEY) ?: return@setFragmentResultListener
+            val newRecipeContent = bundle.getStringArray(RecipeDescriptionFragment.RESULT_KEY) ?: return@setFragmentResultListener
             viewModel.onSaveButtonClicked(newRecipeContent)
         }
     }

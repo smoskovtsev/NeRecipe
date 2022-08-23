@@ -3,6 +3,7 @@ package ru.netology.nerecipe.viewModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import kotlinx.serialization.Serializable
 import ru.netology.nerecipe.adapter.RecipeInteractionListener
 import ru.netology.nerecipe.data.RecipeRepository
 import ru.netology.nerecipe.data.impl.FileRecipeRepository
@@ -17,21 +18,23 @@ class RecipeViewModel(
 
     val data get() = repository.data
 
-    val navigateToRecipeDescriptionScreenEvent = SingleLiveEvent<String>()
+    val navigateToRecipeDescriptionScreenEvent = SingleLiveEvent<Recipe>()
     val navigateToRecipeCardScreenEvent = SingleLiveEvent<Recipe>()
     val currentRecipe = MutableLiveData<Recipe?>(null)
 
-    fun onSaveButtonClicked(description: String) {
-        if (description.isBlank()) return
-
+    fun onSaveButtonClicked(adjustedRecipe: Array<String>) {
+        if (adjustedRecipe.isEmpty()) return
         val recipe = currentRecipe.value?.copy(
-            description = description
+            name = adjustedRecipe[0],
+            author = adjustedRecipe[1],
+            category = adjustedRecipe[2],
+            description = adjustedRecipe[3]
         ) ?: Recipe(
             id = RecipeRepository.NEW_RECIPE_ID,
-            name = "TestDish",
-            author = "NewChef",
-            category = "Miscellaneous",
-            description = description
+            name = adjustedRecipe[0],
+            author = adjustedRecipe[1],
+            category = adjustedRecipe[2],
+            description = adjustedRecipe[3]
         )
         repository.addUpdateRecipe(recipe)
         currentRecipe.value = null
@@ -49,7 +52,7 @@ class RecipeViewModel(
 
     override fun onRecipeEdited(recipe: Recipe) {
         currentRecipe.value = recipe
-        navigateToRecipeDescriptionScreenEvent.value = recipe.description!!
+        navigateToRecipeDescriptionScreenEvent.value = recipe
     }
 
     override fun onRecipeClicked(recipe: Recipe) {

@@ -4,15 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="@dimen/reduced_spacing"
     tools:context=".ui.RecipeDescriptionFragment">
 
     <EditText
-        android:id="@+id/edit"
+        android:id="@+id/editName"
+        android:background="@android:color/darker_gray"
+        android:layout_marginStart="@dimen/reduced_spacing"
+        android:layout_marginEnd="@dimen/reduced_spacing"
+        android:hint="Название блюда"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="24dp"
         android:gravity="start|top"
+        />
+
+    <EditText
+        android:id="@+id/editAuthor"
+        android:background="@android:color/darker_gray"
+        android:layout_marginStart="@dimen/reduced_spacing"
+        android:layout_marginEnd="@dimen/reduced_spacing"
+        android:hint="Повар"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_marginTop="28dp"
+        />
+
+    <EditText
+        android:id="@+id/editCategory"
+        android:background="@android:color/darker_gray"
+        android:layout_marginStart="@dimen/reduced_spacing"
+        android:layout_marginEnd="@dimen/reduced_spacing"
+        android:hint="Тип кухни"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_marginTop="56dp"
+        />
+
+    <EditText
+        android:id="@+id/editDescription"
+        android:textAlignment="inherit"
+        android:hint="Рецепт"
+        android:layout_marginStart="@dimen/reduced_spacing"
+        android:layout_marginEnd="@dimen/reduced_spacing"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:nestedScrollingEnabled="true"
         android:inputType="textMultiLine"
-        android:background="@android:color/transparent"
+        android:layout_marginTop="84dp"
         />
 
     <com.google.android.material.bottomappbar.BottomAppBar

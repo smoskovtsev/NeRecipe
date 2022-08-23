@@ -24,8 +24,9 @@
 
         <argument
             android:name="initialRecipe"
-            app:argType="string"
+            app:argType="ru.netology.nerecipe.dto.Recipe"
             app:nullable="true" />
+
     </fragment>
 
     <fragment

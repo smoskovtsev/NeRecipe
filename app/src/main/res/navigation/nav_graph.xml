@@ -15,6 +15,9 @@
         <action
             android:id="@+id/to_recipeCardFragment"
             app:destination="@+id/recipeCardFragment" />
+        <action
+            android:id="@+id/to_FavoritesFragment"
+            app:destination="@+id/favoritesFragment" />
     </fragment>
 
     <fragment
@@ -41,4 +44,16 @@
             android:id="@+id/to_recipeDescriptionFragment"
             app:destination="@id/recipeDescriptionFragment" />
     </fragment><action android:id="@+id/action_global_feedFragment" app:destination="@id/cookBookFragment"/>
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="ru.netology.nerecipe.ui.FavoritesFragment"
+        tools:layout="@layout/favorites_fragment" >
+
+        <argument
+            android:name="initialRecipe"
+            app:argType="ru.netology.nerecipe.dto.Recipe"
+            app:nullable="true" />
+
+    </fragment>
 </navigation>

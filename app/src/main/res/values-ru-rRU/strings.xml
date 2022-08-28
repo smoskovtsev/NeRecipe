@@ -12,4 +12,11 @@
     <string name="ok">Ok</string>
     <string name="no_recipe_image">Нет рецептов</string>
     <string name="no_recipe_text">У вас еще нет ни одного рецепта</string>
+    <string name="edit_recipe_description">Рецепт</string>
+    <string name="edit_chef_name">Шеф-повар</string>
+    <string name="edit_dish_name">Название блюда</string>
+    <string name="edit_cuisine_type">Тип кухни</string>
+    <string name="home">Домой</string>
+    <string name="search">Поиск</string>
+    <string name="favorites">Избранное</string>
 </resources>

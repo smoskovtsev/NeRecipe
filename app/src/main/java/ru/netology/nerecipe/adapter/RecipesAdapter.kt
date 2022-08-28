@@ -3,16 +3,24 @@ package ru.netology.nerecipe.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import android.widget.ScrollView
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import ru.netology.nerecipe.CookBookFragment
 import ru.netology.nerecipe.R
+import ru.netology.nerecipe.databinding.CookBookFragmentBinding
 import ru.netology.nerecipe.databinding.RecipeBinding
+import ru.netology.nerecipe.databinding.RecipeCardFragmentBinding
 import ru.netology.nerecipe.dto.Recipe
 
 internal class RecipesAdapter(
     private val interactionListener: RecipeInteractionListener
 ) : ListAdapter<Recipe, RecipesAdapter.ViewHolder>(DiffCallback) {
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -22,6 +30,8 @@ internal class RecipesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
+//        val selectRecipeView = holder.itemView.findViewById<TextView>(R.id.recipeCardFragment)
+//        selectRecipeView.text = recipesFilterList[position]
     }
 
     class ViewHolder(private val binding: RecipeBinding, listener: RecipeInteractionListener) : RecyclerView.ViewHolder(binding.root) {
@@ -63,6 +73,7 @@ internal class RecipesAdapter(
                 recipeDescription.text = recipe.description
                 favorite.isChecked = recipe.favorite
             }
+
         }
     }
 

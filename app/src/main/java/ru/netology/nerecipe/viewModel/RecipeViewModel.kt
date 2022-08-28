@@ -19,6 +19,7 @@ class RecipeViewModel(
     val data get() = repository.data
 
     val navigateToRecipeDescriptionScreenEvent = SingleLiveEvent<Recipe>()
+    val navigateToFavoritesFragmentScreenEvent = SingleLiveEvent<Recipe>()
     val navigateToRecipeCardScreenEvent = SingleLiveEvent<Recipe>()
     val currentRecipe = MutableLiveData<Recipe?>(null)
 
@@ -42,6 +43,10 @@ class RecipeViewModel(
 
     fun onAddClicked() {
         navigateToRecipeDescriptionScreenEvent.call()
+    }
+
+    fun onFavoritesFiltered() {
+        navigateToFavoritesFragmentScreenEvent.call()
     }
 
     // region PostInteractionListener

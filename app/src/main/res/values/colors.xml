@@ -10,6 +10,7 @@
     <color name="pink_200">#F48FB1</color>
     <color name="red_500">#E91E63</color>
     <color name="red_700">#C2185B</color>
+    <color name="amber_100">#83FFECB3</color>
     <color name="amber_200">#FFCC80</color>
     <color name="amber_700">#F57C00</color>
 </resources>

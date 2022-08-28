@@ -2,6 +2,7 @@ package ru.netology.nerecipe.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
@@ -38,6 +39,7 @@ class RecipeCardFragment : Fragment() {
                 return@observe
             }
             viewHolder.bind(recipe)
+            binding.recipeCard.recipeDescription.visibility = View.VISIBLE
         }
 
         viewModel.navigateToRecipeDescriptionScreenEvent.observe(viewLifecycleOwner) { initialContent ->

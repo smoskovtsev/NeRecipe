@@ -11,4 +11,11 @@
     <string name="ok">OK</string>
     <string name="no_recipe_text">You have no recipes yet</string>
     <string name="no_recipe_image">No recipe image</string>
+    <string name="edit_cuisine_type">Cuisine type</string>
+    <string name="edit_recipe_description">Recipe</string>
+    <string name="edit_chef_name">Chef</string>
+    <string name="edit_dish_name">Dish name</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="favorites">Favorites</string>
 </resources>

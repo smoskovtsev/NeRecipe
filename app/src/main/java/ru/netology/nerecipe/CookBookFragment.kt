@@ -8,8 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.navigation.NavigationBarView
+import kotlinx.coroutines.newFixedThreadPoolContext
 import ru.netology.nerecipe.adapter.RecipesAdapter
 import ru.netology.nerecipe.databinding.CookBookFragmentBinding
+import ru.netology.nerecipe.dto.Recipe
 import ru.netology.nerecipe.ui.RecipeDescriptionFragment
 import ru.netology.nerecipe.viewModel.RecipeViewModel
 
@@ -29,6 +32,11 @@ class CookBookFragment : Fragment() {
 
         viewModel.navigateToRecipeCardScreenEvent.observe(this) { initialRecipe ->
             val direction = CookBookFragmentDirections.toRecipeCardFragment(initialRecipe)
+            findNavController().navigate(direction)
+        }
+
+        viewModel.navigateToFavoritesFragmentScreenEvent.observe(this) { initialRecipe ->
+            val direction = CookBookFragmentDirections.toFavoritesFragment(initialRecipe)
             findNavController().navigate(direction)
         }
     }
@@ -52,7 +60,29 @@ class CookBookFragment : Fragment() {
         binding.fab.setOnClickListener {
             viewModel.onAddClicked()
         }
+
+        binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.navigation_favorites -> {
+                    viewModel.onFavoritesFiltered()
+                    true
+                }
+                R.id.navigation_home -> {
+                    binding.textEmpty.visibility = View.VISIBLE
+                    true
+                }
+                R.id.navigation_search -> {
+                    binding.imageEmpty.visibility = View.VISIBLE
+                    true
+                }
+                else -> false
+            }
+        }
     }.root
+
+//    override fun getItemCount(): Int {
+//        return recipesFilterList.size
+//    }
 
     override fun onResume () {
         super.onResume()

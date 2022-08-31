@@ -34,7 +34,9 @@ class FavoritesFragment : Fragment() {
         val adapter = RecipesAdapter(viewModel)
         binding.recipesRecyclerView.adapter = adapter
         viewModel.data.observe(viewLifecycleOwner) { recipes ->
-            adapter.submitList(null)
+            adapter.submitList(recipes.filter {
+                it.favorite
+            })
         }
     }.root
 

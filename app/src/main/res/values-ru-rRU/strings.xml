@@ -19,4 +19,8 @@
     <string name="home">Домой</string>
     <string name="search">Поиск</string>
     <string name="favorites">Избранное</string>
+    <string name="asian_cuisine">Азиатская</string>
+    <string name="italian_cuisine">Итальянская</string>
+    <string name="russian_cuisine">Русская</string>
+    <string name="other_cuisine">Другая</string>
 </resources>

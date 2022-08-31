@@ -29,16 +29,22 @@
         android:layout_marginTop="28dp"
         />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editCategory"
-        android:background="@android:color/darker_gray"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/reduced_spacing"
         android:layout_marginEnd="@dimen/reduced_spacing"
-        android:hint="@string/edit_cuisine_type"
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
         android:layout_marginTop="56dp"
+        android:hint="@string/edit_cuisine_type">
+
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none"
         />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <EditText
         android:id="@+id/editDescription"
@@ -51,7 +57,7 @@
         android:layout_height="150dp"
         android:nestedScrollingEnabled="true"
         android:inputType="textMultiLine"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="108dp"
         />
 
     <com.google.android.material.bottomappbar.BottomAppBar

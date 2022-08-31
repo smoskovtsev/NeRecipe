@@ -18,4 +18,16 @@
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="favorites">Favorites</string>
+
+    <string-array name="cuisine_types">
+        <item>@string/asian_cuisine</item>
+        <item>@string/italian_cuisine</item>
+        <item>@string/russian_cuisine</item>
+        <item>@string/other_cuisine</item>
+    </string-array>
+
+    <string name="asian_cuisine">Asian</string>
+    <string name="italian_cuisine">Italian</string>
+    <string name="russian_cuisine">Russian</string>
+    <string name="other_cuisine">Other</string>
 </resources>

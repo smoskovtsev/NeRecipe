@@ -24,18 +24,16 @@ class RecipeDescriptionFragment : Fragment() {
         args.initialRecipe
     }
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ) = RecipeDescriptionFragmentBinding.inflate(layoutInflater, container, false).also { binding ->
-        binding.editName.setText(initialRecipe?.name)
-        binding.editAuthor.setText(initialRecipe?.author)
+        binding.editName.editText!!.setText(initialRecipe?.name)
+        binding.editName.requestFocus()
+        binding.editAuthor.editText?.setText(initialRecipe?.author)
         binding.editCategory.editText?.setText(initialRecipe?.category)
-        binding.editDescription.setText(initialRecipe?.description)
-        binding.editDescription.requestFocus()
+        binding.editDescription.editText!!.setText(initialRecipe?.description)
         binding.ok.setOnClickListener {
             onOkButtonClicked(binding)
         }
@@ -50,10 +48,10 @@ class RecipeDescriptionFragment : Fragment() {
     }.root
 
     private fun onOkButtonClicked(binding: RecipeDescriptionFragmentBinding) {
-        val textName = binding.editName.text
-        val textAuthor = binding.editAuthor.text
+        val textName = binding.editName.editText?.text
+        val textAuthor = binding.editAuthor.editText?.text
         val textCategory = binding.editCategory.editText?.text
-        val textDescription = binding.editDescription.text
+        val textDescription = binding.editDescription.editText?.text
         if (!textName.isNullOrBlank() && !textDescription.isNullOrBlank() ) {
             val resultBundle = Bundle(1)
             resultBundle.putStringArray(RESULT_KEY, arrayOf(textName.toString(), textAuthor.toString(), textCategory.toString(), textDescription.toString()))

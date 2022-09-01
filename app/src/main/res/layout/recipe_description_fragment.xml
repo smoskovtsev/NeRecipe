@@ -7,27 +7,40 @@
     android:paddingTop="@dimen/reduced_spacing"
     tools:context=".ui.RecipeDescriptionFragment">
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editName"
-        android:background="@android:color/darker_gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/reduced_spacing"
         android:layout_marginEnd="@dimen/reduced_spacing"
-        android:hint="@string/edit_dish_name"
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:gravity="start|top"
-        />
+        app:startIconDrawable="@drawable/ic_dish_24"
+        app:startIconContentDescription="@string/edit_dish_name"
+        android:hint="@string/edit_dish_name">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editAuthor"
-        android:background="@android:color/darker_gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/reduced_spacing"
         android:layout_marginEnd="@dimen/reduced_spacing"
-        android:hint="@string/edit_chef_name"
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:layout_marginTop="28dp"
-        />
+        android:layout_marginTop="60dp"
+        app:startIconDrawable="@drawable/ic_chef_24"
+        app:startIconContentDescription="@string/edit_chef_name"
+        android:hint="@string/edit_chef_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editCategory"
@@ -36,7 +49,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/reduced_spacing"
         android:layout_marginEnd="@dimen/reduced_spacing"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="120dp"
+        app:startIconDrawable="@drawable/ic_earth_24"
+        app:startIconContentDescription="@string/edit_cuisine_type"
         android:hint="@string/edit_cuisine_type">
 
     <AutoCompleteTextView
@@ -46,19 +61,21 @@
         />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editDescription"
-        android:textAlignment="inherit"
-        android:hint="@string/edit_recipe_description"
-        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/reduced_spacing"
         android:layout_marginEnd="@dimen/reduced_spacing"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:nestedScrollingEnabled="true"
-        android:inputType="textMultiLine"
-        android:layout_marginTop="108dp"
-        />
+        android:layout_marginTop="180dp"
+        android:hint="@string/edit_recipe_description">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"

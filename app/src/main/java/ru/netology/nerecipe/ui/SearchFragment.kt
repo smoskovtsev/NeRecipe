@@ -2,42 +2,46 @@ package ru.netology.nerecipe.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import com.google.android.material.navigation.NavigationBarView
-import kotlinx.coroutines.newFixedThreadPoolContext
-import ru.netology.nerecipe.CookBookFragmentDirections
 import ru.netology.nerecipe.adapter.RecipesAdapter
-import ru.netology.nerecipe.databinding.CookBookFragmentBinding
-import ru.netology.nerecipe.databinding.FavoritesFragmentBinding
-import ru.netology.nerecipe.dto.Recipe
-import ru.netology.nerecipe.ui.RecipeDescriptionFragment
-import ru.netology.nerecipe.util.SingleLiveEvent
+import ru.netology.nerecipe.databinding.SearchFragmentBinding
 import ru.netology.nerecipe.viewModel.RecipeViewModel
 
-class FavoritesFragment : Fragment() {
+class SearchFragment : Fragment() {
 
     private val viewModel: RecipeViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
 
+    lateinit var searchView: SearchView
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = FavoritesFragmentBinding.inflate(layoutInflater, container, false).also { binding ->
+        savedInstanceState: Bundle?,
+    ) = SearchFragmentBinding.inflate(layoutInflater, container, false).also { binding ->
 
         val adapter = RecipesAdapter(viewModel)
         binding.recipesRecyclerView.adapter = adapter
-        viewModel.data.observe(viewLifecycleOwner) { recipes ->
-            adapter.submitList(recipes.filter {
-                it.favorite
-            })
-        }
+        searchView = binding.recipeSearch
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                viewModel.data.observe(viewLifecycleOwner) { recipes ->
+                    adapter.submitList(recipes.filter {
+                        it.description!!.contains(newText)
+                    })
+                }
+                return false
+            }
+        })
     }.root
 
     override fun onResume () {

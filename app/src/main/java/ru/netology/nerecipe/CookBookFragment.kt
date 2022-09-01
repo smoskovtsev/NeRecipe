@@ -39,6 +39,11 @@ class CookBookFragment : Fragment() {
             val direction = CookBookFragmentDirections.toFavoritesFragment(initialRecipe)
             findNavController().navigate(direction)
         }
+
+        viewModel.navigateToSearchFragmentScreenEvent.observe(this) { initialRecipe ->
+            val direction = CookBookFragmentDirections.toSearchFragment(initialRecipe)
+            findNavController().navigate(direction)
+        }
     }
 
     override fun onCreateView(
@@ -72,7 +77,7 @@ class CookBookFragment : Fragment() {
                     true
                 }
                 R.id.navigation_search -> {
-                    binding.imageEmpty.visibility = View.VISIBLE
+                    viewModel.onSearchOpened()
                     true
                 }
                 else -> false

@@ -20,6 +20,7 @@ class RecipeViewModel(
 
     val navigateToRecipeDescriptionScreenEvent = SingleLiveEvent<Recipe>()
     val navigateToFavoritesFragmentScreenEvent = SingleLiveEvent<Recipe>()
+    val navigateToSearchFragmentScreenEvent = SingleLiveEvent<Recipe>()
     val navigateToRecipeCardScreenEvent = SingleLiveEvent<Recipe>()
     val currentRecipe = MutableLiveData<Recipe?>(null)
 
@@ -47,6 +48,10 @@ class RecipeViewModel(
 
     fun onFavoritesFiltered() {
         navigateToFavoritesFragmentScreenEvent.call()
+    }
+
+    fun onSearchOpened() {
+        navigateToSearchFragmentScreenEvent.call()
     }
 
     // region PostInteractionListener

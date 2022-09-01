@@ -2,21 +2,12 @@ package ru.netology.nerecipe.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import com.google.android.material.navigation.NavigationBarView
-import kotlinx.coroutines.newFixedThreadPoolContext
-import ru.netology.nerecipe.CookBookFragmentDirections
 import ru.netology.nerecipe.adapter.RecipesAdapter
-import ru.netology.nerecipe.databinding.CookBookFragmentBinding
 import ru.netology.nerecipe.databinding.FavoritesFragmentBinding
-import ru.netology.nerecipe.dto.Recipe
-import ru.netology.nerecipe.ui.RecipeDescriptionFragment
-import ru.netology.nerecipe.util.SingleLiveEvent
 import ru.netology.nerecipe.viewModel.RecipeViewModel
 
 class FavoritesFragment : Fragment() {

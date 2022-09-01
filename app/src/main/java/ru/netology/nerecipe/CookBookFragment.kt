@@ -8,11 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.navigation.NavigationBarView
-import kotlinx.coroutines.newFixedThreadPoolContext
 import ru.netology.nerecipe.adapter.RecipesAdapter
 import ru.netology.nerecipe.databinding.CookBookFragmentBinding
-import ru.netology.nerecipe.dto.Recipe
 import ru.netology.nerecipe.ui.RecipeDescriptionFragment
 import ru.netology.nerecipe.viewModel.RecipeViewModel
 

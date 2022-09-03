@@ -36,7 +36,7 @@ class SearchFragment : Fragment() {
             override fun onQueryTextChange(newText: String): Boolean {
                 viewModel.data.observe(viewLifecycleOwner) { recipes ->
                     adapter.submitList(recipes.filter {
-                        it.description!!.contains(newText)
+                        it.name!!.contains(newText) or it.description!!.contains(newText)
                     })
                 }
                 return false
